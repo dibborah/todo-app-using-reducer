@@ -1,30 +1,25 @@
-import Counter from "./Counter";
+import { useReducer } from "react";
+import Todos from "./Todos";
+import TodoForm from "./TodoForm";
 
-const App = () => {
-  return (
-    <div>
-      <Counter />
-    </div>
-  );
+const reducer = (todos, action) => {
+  return todos;
 };
 
+const initialTodos = [
+  { id: "1", title: "React by CodProg.com", completed: false },
+  { id: "2", title: "React Project Libraries", completed: false },
+  { id: "3", title: "Practicing coding", completed: true },
+];
+
+function App() {
+  const [todos, dispatch] = useReducer(reducer, initialTodos);
+  return (
+    <div>
+      <TodoForm />
+      <Todos todos={todos}/>
+    </div>
+  );
+}
+
 export default App;
-
-// import { useReducer } from "react";
-
-// const reducer = () => {
-
-// }
-
-// const initial = {};
-
-// function App() {
-//   const [todos, dispatch] = useReducer(reducer, initialTodos);
-//   return (
-//     <div>
-//       <h1>hello world</h1>
-//     </div>
-//   );
-// }
-
-// export default App;

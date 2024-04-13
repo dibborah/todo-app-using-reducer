@@ -1,7 +1,16 @@
-const Todo = ({ id, title, completed, dispatch}) => {
-  const handleDeleteTodo = (id) => {
-    dispatch({type:"DELETE", payload: id})
-  }
+const Todo = ({ id, title, completed, dispatch }) => {
+  const handleDeleteTodo = () => {
+    dispatch({
+      type: "DELETE_TODO",
+      payload: { id: id },
+    });
+  };
+  const handleToggle = () => {
+    dispatch({
+      type: "TOGGLE_COMPLETED",
+      payload: { id: id },
+    });
+  };
   return (
     <div
       style={{
@@ -10,14 +19,15 @@ const Todo = ({ id, title, completed, dispatch}) => {
         backgroundColor: "#cecece",
         borderRadius: "1rem",
         margin: "1rem",
-        textAlign:"center"
+        textAlign: "center",
       }}
     >
       <h4>id: {id}</h4>
-      <h4>title: {title}</h4>
+      <h4 style={{textDecoration: completed ? "line-through" : "solid"}}>title: {title}</h4>
       {/* Remember boolean values never gets printed. Based on that we have to print Strings or other values */}
       <h4>completed: {completed ? "true" : "false"}</h4>
-      <button onClick={() => handleDeleteTodo(id)}>Delete</button>
+      <button onClick={handleDeleteTodo}>Delete</button>
+      <button onClick={handleToggle}>Toggle</button>
     </div>
   );
 };

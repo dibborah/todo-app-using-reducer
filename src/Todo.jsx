@@ -1,4 +1,7 @@
-const Todo = ({ id, title, completed }) => {
+const Todo = ({ id, title, completed, dispatch}) => {
+  const handleDeleteTodo = (id) => {
+    dispatch({type:"DELETE", payload: id})
+  }
   return (
     <div
       style={{
@@ -14,7 +17,7 @@ const Todo = ({ id, title, completed }) => {
       <h4>title: {title}</h4>
       {/* Remember boolean values never gets printed. Based on that we have to print Strings or other values */}
       <h4>completed: {completed ? "true" : "false"}</h4>
-      <button>Delete</button>
+      <button onClick={() => handleDeleteTodo(id)}>Delete</button>
     </div>
   );
 };

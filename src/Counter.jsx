@@ -3,27 +3,27 @@ import { useReducer } from "react";
 const reducer = (state, action) => {
   // using switch case:
 
-  //   switch (action.type) {
-  //     case "DECREMENT":
-  //       return { count: state.count - 1 };
-  //     case "RESET":
-  //       return { count: 0 };
-  //     case "INCREMENT":
-  //       return { count: state.count + 1 };
-  //     default:
-  //       return state;
-  //   }
+    switch (action.type) {
+      case "DECREMENT":
+        return { count: state.count - 1 };
+      case "RESET":
+        return { count: 0 };
+      case "INCREMENT":
+        return { count: state.count + 1 };
+      default:
+        return state;
+    }
 
   // using if statement
-  if (action.type === "DECREMENT") {
-    return { count: state.count - 1 };
-  } else if (action.type === "RESET") {
-    return { count: 0 };
-  } else if (action.type === "INCREMENT") {
-    return { count: state.count + 1 };
-  } else {
-    return state;
-  }
+  // if (action.type === "DECREMENT") {
+  //   return { count: state.count - 1 };
+  // } else if (action.type === "RESET") {
+  //   return { count: 0 };
+  // } else if (action.type === "INCREMENT") {
+  //   return { count: state.count + 1 };
+  // } else {
+  //   return state;
+  // }
 };
 
 const initialState = {

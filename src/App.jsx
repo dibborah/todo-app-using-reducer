@@ -5,6 +5,8 @@ import TodoForm from "./TodoForm";
 const reducer = (todos, action) => {
   if(action.type === "DELETE"){
     return todos.filter((todo) => todo.id !== action.payload);
+  }else if (action.type === "ADD"){
+    return [...todos, action.payload];
   }
   return todos;
 };
@@ -19,7 +21,7 @@ function App() {
   const [todos, dispatch] = useReducer(reducer, initialTodos);
   return (
     <div>
-      <TodoForm todoReducer={reducer} />
+      <TodoForm dispatch={dispatch} />
       <Todos todos={todos} dispatch={dispatch} />
     </div>
   );

@@ -7,7 +7,7 @@ const reducer = (todos, action) => {
 };
 
 const initialTodos = [
-  { id: "1", title: "React by CodProg.com", completed: false },
+  { id: "1", title: "React by CodProg.com", completed: true },
   { id: "2", title: "React Project Libraries", completed: false },
   { id: "3", title: "Practicing coding", completed: true },
 ];
@@ -16,7 +16,7 @@ function App() {
   const [todos, dispatch] = useReducer(reducer, initialTodos);
   return (
     <div>
-      <TodoForm />
+      <TodoForm todoReducer={reducer}/>
       <Todos todos={todos}/>
     </div>
   );

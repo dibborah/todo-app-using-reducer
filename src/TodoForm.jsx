@@ -1,10 +1,13 @@
-const TodoForm = () => {
-  const handleAddTodo = () => {};
+const TodoForm = ({ todoReducer }) => {
+  const handleAddTodo = (e) => {
+  e.preventDefault();
+  // todoReducer(data);
+  };
   return (
     <div>
-      <form>
+      <form onSubmit={handleAddTodo}>
         <input type="text" id="todoList" />
-        <button onClick={handleAddTodo}>Add Todo</button>
+        <button>Add Todo</button>
       </form>
     </div>
   );

@@ -1,10 +1,12 @@
 import Todo from "./Todo";
+import { MyContext } from "./App";
 
-const Todos = ({ todos, dispatch }) => {
+const Todos = () => {
+  const {todos} = MyContext();
   return (
     <div>
       {todos.map((todo) => (
-        <Todo {...todo} key={todo.id} dispatch={dispatch}/>
+        <Todo {...todo} key={todo.id}/>
       ))}
     </div>
   );

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { v4 as uuid } from "uuid";
-
-const AddTodoForm = ({ dispatch }) => {
+import { MyContext } from "./App";
+const AddTodoForm = () => {
   const [title, setTitle] = useState("");
+  const { dispatch } = MyContext();
   const handleAddTodo = (e) => {
     e.preventDefault();
-    if(title.trim().length === 0){
-      alert("Please Enter something!!!")
+    if (title.trim().length === 0) {
+      alert("Please Enter something!!!");
       return;
     }
     dispatch({

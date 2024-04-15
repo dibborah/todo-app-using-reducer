@@ -1,35 +1,45 @@
-import MyComponent from "./MyComponent";
+import { useContext, useReducer } from "react";
+import Todos from "./Todos";
+import AddTodoForm from "./AddTodoForm";
+import { createContext } from "react";
 
-// prop drilling se bachne ne ke liya hum context api ka use karte hain
-
-// prop drilling to pass data
-// Through props data in react is always passed from PARENT to CHILD
-
-// ---- CONTEXT WRAPPER --------
-
-// COMPONENTS
-
-// PARENT
-//     |
-//    🔻
-// CHILD
-//     |
-//    🔻
-// GRAND-CHILD
-
-// ---- CONTEXT WRAPPER --------
-
-// export const MyAppContext = createContext();
-
-const App = () => {
-  return (
-    <div
-      style={{ padding: "2rem", backgroundColor: "#C8E4B2", height: "100vh" }}
-    >
-      <h1>App</h1>
-      <MyComponent />
-    </div>
-  );
+const reducer = (todos, action) => {
+  if (action.type === "DELETE_TODO") {
+    return todos.filter((todo) => todo.id !== action.payload.id);
+  } else if (action.type === "ADD_TODO") {
+    return [...todos, action.payload.newTodo];
+  } else if (action.type === "TOGGLE_COMPLETED") {
+    return todos.map((todo) => {
+      if (todo.id === action.payload.id) {
+        return { ...todo, completed: !todo.completed };
+      } else {
+        return todo;
+      }
+    });
+  }
+  return todos;
 };
+
+const initialTodos = [
+  { id: "1", title: "React by CodProg.com", completed: true },
+  { id: "2", title: "React Project Libraries", completed: false },
+  { id: "3", title: "Practicing coding", completed: true },
+];
+
+const TodoContext = createContext();
+
+function App() {
+  const [todos, dispatch] = useReducer(reducer, initialTodos);
+  return (
+    <TodoContext.Provider value={{todos, dispatch}}>
+      <AddTodoForm />
+      <Todos />
+    </TodoContext.Provider>
+  );
+}
+
+export const MyContext = () => {
+  return useContext(TodoContext);
+}
 
 export default App;

@@ -1,4 +1,7 @@
-const Todo = ({ id, title, completed, dispatch }) => {
+import { MyContext } from "./App";
+
+const Todo = ({ id, title, completed }) => {
+  const { dispatch } = MyContext();
   const handleDeleteTodo = () => {
     dispatch({
       type: "DELETE_TODO",
@@ -23,7 +26,9 @@ const Todo = ({ id, title, completed, dispatch }) => {
       }}
     >
       <h4>id: {id}</h4>
-      <h4 style={{textDecoration: completed ? "line-through" : "solid"}}>title: {title}</h4>
+      <h4 style={{ textDecoration: completed ? "line-through" : "solid" }}>
+        title: {title}
+      </h4>
       {/* Remember boolean values never gets printed. Based on that we have to print Strings or other values */}
       <h4>completed: {completed ? "true" : "false"}</h4>
       <button onClick={handleDeleteTodo}>Delete</button>

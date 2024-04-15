@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import  {MyAppContext}  from "./main";
+import  {MyAppContext}  from "./mainEarlier";
 
 const GrandChild = () => {
   const { key1, someFunction }  = useContext(MyAppContext);

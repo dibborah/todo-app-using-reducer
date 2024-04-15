@@ -1,5 +1,5 @@
 import Todo from "./Todo";
-import { MyContext } from "./App";
+import { MyContext } from "./MyProvider";
 
 const Todos = () => {
   const {todos} = MyContext();

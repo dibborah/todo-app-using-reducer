@@ -1,4 +1,4 @@
-import { MyContext } from "./App";
+import { MyContext } from "./MyProvider";
 
 const Todo = ({ id, title, completed }) => {
   const { dispatch } = MyContext();

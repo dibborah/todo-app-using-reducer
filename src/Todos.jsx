@@ -1,8 +1,8 @@
 import Todo from "./Todo";
-import { MyContext } from "./MyProvider";
+import { useTodos } from "./contexts/TodosProvider";
 
 const Todos = () => {
-  const {todos} = MyContext();
+  const {todos} = useTodos();
   return (
     <div>
       {todos.map((todo) => (

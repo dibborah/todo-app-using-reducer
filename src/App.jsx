@@ -1,13 +1,18 @@
 import Todos from "./Todos";
 import AddTodoForm from "./AddTodoForm";
-import MyProvider from "./MyProvider";
+import TodosProvider from "./contexts/TodosProvider";
+import MyPortalComponent from "./MyPortalComponent";
 
 function App() {
   return (
-    <MyProvider>
-      <AddTodoForm />
-      <Todos />
-    </MyProvider>
+    <TodosProvider>
+      <h2>App component</h2>
+      {
+        //   <AddTodoForm />
+        // <Todos />
+      }
+      <MyPortalComponent />
+    </TodosProvider>
   );
 }
 

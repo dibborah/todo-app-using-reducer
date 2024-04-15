@@ -1,19 +1,8 @@
-import { MyContext } from "./MyProvider";
+import { useTodos } from "./contexts/TodosProvider";
 
 const Todo = ({ id, title, completed }) => {
-  const { dispatch } = MyContext();
-  const handleDeleteTodo = () => {
-    dispatch({
-      type: "DELETE_TODO",
-      payload: { id: id },
-    });
-  };
-  const handleToggle = () => {
-    dispatch({
-      type: "TOGGLE_COMPLETED",
-      payload: { id: id },
-    });
-  };
+  const { handleDeleteTodo,  handleToggleTodo } = useTodos();
+
   return (
     <div
       style={{
@@ -31,8 +20,8 @@ const Todo = ({ id, title, completed }) => {
       </h4>
       {/* Remember boolean values never gets printed. Based on that we have to print Strings or other values */}
       <h4>completed: {completed ? "true" : "false"}</h4>
-      <button onClick={handleDeleteTodo}>Delete</button>
-      <button onClick={handleToggle}>Toggle</button>
+      <button onClick={() => handleDeleteTodo(id)}>Delete</button>
+      <button onClick={() => handleToggleTodo(id)}>Toggle</button>
     </div>
   );
 };

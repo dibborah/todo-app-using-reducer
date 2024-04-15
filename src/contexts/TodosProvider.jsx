@@ -25,19 +25,41 @@ const initialTodos = [
   { id: "3", title: "Practicing coding", completed: true },
 ];
 
-const MyProvider = ({ children }) => {
+const TodosProvider = ({ children }) => {
   const [todos, dispatch] = useReducer(reducer, initialTodos);
 
+  const handleDeleteTodo = (id) => {
+    dispatch({
+      type: "DELETE_TODO",
+      payload: { id: id },
+    });
+  };
+  const handleToggleTodo = (id) => {
+    dispatch({
+      type: "TOGGLE_COMPLETED",
+      payload: { id: id },
+    });
+  };
+  const addNewTodo = (title) => {
+    dispatch({
+      type: "ADD_TODO",
+      payload: {
+        newTodo: { id: crypto.randomUUID(), title: title, completed: false },
+      },
+    });
+  };
+
   return (
-    <TodoContext.Provider value={{ todos, dispatch }}>
+    <TodoContext.Provider
+      value={{ todos, dispatch, handleDeleteTodo, handleToggleTodo, addNewTodo }}
+    >
       {children}
     </TodoContext.Provider>
   );
 };
 
-export default MyProvider;
+export default TodosProvider;
 
-export const MyContext = () => {
-    return useContext(TodoContext);
-  };
-  
+export const useTodos = () => {
+  return useContext(TodoContext);
+};
